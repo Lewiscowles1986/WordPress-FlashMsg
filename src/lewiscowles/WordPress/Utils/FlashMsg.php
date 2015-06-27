@@ -10,7 +10,7 @@ class FlashMsg {
 	protected static $_messages = array();
 
 	public function __construct() {
-		add_action('admin_notices', array( $this, 'showAdminMessages' ) );
+		\add_action('admin_notices', array( $this, 'showAdminMessages' ) );
 	}
 
 	public static function addError( $message ) {

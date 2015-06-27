@@ -1,6 +1,6 @@
 <?php
 
-use lewiscowles\WordPress\Utils;
+use lewiscowles\WordPress\Utils\FlashMsg;
 
 class MainTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,14 +30,16 @@ class MainTest extends \PHPUnit_Framework_TestCase
 	{
 		FlashMsg::resetMessages();
 		FlashMsg::addError( 'Oh Noes!' );
-		$this->expectOutputString(FlashMsg::showMessage( 'Oh Noes!', FlashMsg::ERROR ) );
+		FlashMsg::showAdminMessages();
+		$this->expectOutputString( FlashMsg::showMessage( 'Oh Noes!', FlashMsg::ERROR ) );
 	}
 
 	public function testSampleMessage()
 	{
 		FlashMsg::resetMessages();
 		FlashMsg::addMessage( 'Testing 123...' );
-		$this->expectOutputString(FlashMsg::showMessage( 'Testing 123...', FlashMsg::REGULAR ) );
+		FlashMsg::showAdminMessages();
+		$this->expectOutputString( FlashMsg::showMessage( 'Testing 123...', FlashMsg::REGULAR ) );
 	}
 
 	public function testClearMessages()
@@ -45,6 +47,7 @@ class MainTest extends \PHPUnit_Framework_TestCase
 		echo "pre";
 		FlashMsg::addMessage('Hi');
 		FlashMsg::resetMessages();
+		FlashMsg::showAdminMessages();
 		$this->expectOutputString("pre");
 	}
 

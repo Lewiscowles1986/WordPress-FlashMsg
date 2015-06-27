@@ -6,7 +6,7 @@
          convertWarningsToExceptions="true"
          forceCoversAnnotation="false"
          processIsolation="false"
-         bootstrap="vendor/autoload.php">
+         bootstrap="bootstrap.php">
     <logging>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
         <log type="coverage-php" target="build/logs/coverage.cov"/>
@@ -15,8 +15,8 @@
         <log type="junit" target="test/reports/junit.xml" logIncompleteSkipped="false"/>
     </logging>
     <testsuites>
-        <testsuite>
-            <directory>test/</directory>
+        <testsuite name="mainTests">
+            <directory suffix=".php">test/</directory>
         </testsuite>
     </testsuites>
     <filter>
