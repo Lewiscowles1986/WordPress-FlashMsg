@@ -7,7 +7,7 @@ class FlashMsg {
 	const REGULAR = 'updated fade';
 	const ERROR = 'error';
 
-	protected static $messages = array();
+	protected static $_messages = array();
 
 	public function __construct() {
 		add_action('admin_notices', array( $this, 'showAdminMessages' ) );
@@ -18,21 +18,29 @@ class FlashMsg {
 	}
 
 	public static function addMessage( $message, $htmlclass = self::REGULAR ) {
-		static::$messages[] = array( 'html' => $message, 'htmlclass' => $htmlclass );
+		static::$_messages[] = array( 'html' => $message, 'htmlclass' => $htmlclass );
 	}
 
 	public static function showMessage( $message, $htmlclass = self::REGULAR ) {
-		echo sprintf(
+		return sprintf(
 			'<div id="message" class="%s"><p><strong>%s</strong></p></div>',
 			$htmlclass, $message
 		);
 	}
 
-	public function showAdminMessages() {
-		foreach( static::$messages as $message ) {
+	public static function getMessages() {
+		return static::$_messages;
+	}
+
+	public static function resetMessages() {
+		static::$_messages = array();
+	}
+
+	public static function showAdminMessages() {
+		foreach( static::$_messages as $message ) {
 			$type = $message['htmlclass'];
 			$msg = $message['html'];
-		    self::showMessage( $msg, $type );
+		    echo self::showMessage( $msg, $type );
 		}
 	}
 
