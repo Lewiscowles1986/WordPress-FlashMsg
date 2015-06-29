@@ -40,7 +40,7 @@ class FlashMsg {
 		foreach( static::$_messages as $message ) {
 			$type = $message['htmlclass'];
 			$msg = $message['html'];
-		    echo self::showMessage( $msg, $type );
+			echo self::showMessage( $msg, $type );
 		}
 	}
 
