@@ -50,5 +50,11 @@ class MainTest extends \PHPUnit_Framework_TestCase
 		FlashMsg::showAdminMessages();
 		$this->expectOutputString("pre");
 	}
+	
+	public function testGetMessagesArray()
+	{
+		$messages = FlashMsg::getMessages();
+		$this->assertTrue( is_array( $messages ) );
+	}
 
 }
